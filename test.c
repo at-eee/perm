@@ -4,8 +4,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-
-
 bool is_number(const char *num)
 {
     int idx = strlen(num);
@@ -29,18 +27,22 @@ void swap(char *x, char *y)
     *y = temp;
 }
 
-void permute(char *a, int l, int r)
+void permute(char *a, int l, int r, int len)
 {
     if (l == r)
     {
-        printf("%s\n", a);
+        for (int i = 0; i < len; i++) {
+            printf("%c ", a[i]);
+        }
+        putchar('\n');
+
         return;
     }
 
     for (int i = l; i <= r; i++)
     {
         swap(a + l, a + i);
-        permute(a, l + 1, r);
+        permute(a, l + 1, r, len);
         swap(a + l, a + i);
     }
 }
@@ -57,7 +59,7 @@ void print_permutations(int arr_num, char *arr_len)
         }
         printf("\n");
 
-        permute(str, 0, arr_num - 1);
+        permute(str, 0, arr_num - 1, arr_num);
         return;
     }
 
