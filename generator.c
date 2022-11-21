@@ -4,6 +4,14 @@
 #include <string.h>
 #include <stdbool.h>
 
+void write_to_file(FILE* file, char* input, bool nl_flag) {
+        if (nl_flag) {
+                fprintf(file, "%s\n", input);
+        } else {
+                fprintf(file, "%s", input);
+        }
+}
+
 bool is_number(const char *num)
 {
         int idx = strlen(num);
@@ -21,6 +29,7 @@ bool is_number(const char *num)
 
 void print_permutations(int arr_num, char *arr_len)
 {
+        char input[256];
         if (!strcmp(arr_len, "A"))
         {
                 while (arr_num > 9)
@@ -29,6 +38,12 @@ void print_permutations(int arr_num, char *arr_len)
                         scanf("%d", &arr_num);
                 }
 
+                sprintf(input, "%d A", arr_num);
+
+                FILE *f = fopen("data.txt", "w+");
+
+                write_to_file(f, input, true);
+
                 if (arr_num == 8)
                 {
                         char set[8] = "12345678";
@@ -36,7 +51,13 @@ void print_permutations(int arr_num, char *arr_len)
                         int lastpermutation = 0;
                         int i, j, k, l;
 
-                        printf("%s\n", set);
+                        for (int z = 0; z < arr_num; z++)
+                        {
+                                sprintf(input, "%c ", set[z]);
+                                write_to_file(f, input, false);
+                        }
+
+                        write_to_file(f, "", true);
 
                         while (!lastpermutation)
                         {
@@ -79,25 +100,29 @@ void print_permutations(int arr_num, char *arr_len)
 
                                         for (int z = 0; z < arr_num; z++)
                                         {
-                                                printf("%c ", set[z]);
+                                                sprintf(input, "%c ", set[z]);
+                                                write_to_file(f, input, false);
                                         }
 
-                                        printf("\n");
+                                        write_to_file(f, "", true);
                                 }
                         }
+                        fclose(f);
                         return;
                 }
 
+                puts("");
                 char set[arr_num];
 
                 for (int p = 0; p < arr_num; p++)
                 {
                         char value = ((p + 1) + '0');
                         set[p] = value;
-                        printf("%c ", set[p]);
+                        sprintf(input, "%c ", set[p]);
+                        write_to_file(f, input, false);
                 }
 
-                printf("\n");
+                write_to_file(f, "", true);
 
                 char scratch;
                 int lastpermutation = 0;
@@ -144,12 +169,14 @@ void print_permutations(int arr_num, char *arr_len)
 
                                 for (int z = 0; z < arr_num; z++)
                                 {
-                                        printf("%c ", set[z]);
+                                        sprintf(input, "%c ", set[z]);
+                                        write_to_file(f, input, false);
                                 }
 
-                                printf("\n");
+                                write_to_file(f, "", true);
                         }
                 }
+                fclose(f);
                 return;
         }
 
@@ -165,10 +192,17 @@ void print_permutations(int arr_num, char *arr_len)
         int fin_outp[arr_num];
         int lower = 1;
 
+        FILE* f = fopen("data.txt", "w+");
+
+        sprintf(input, "%d %d", arr_num, len);
+        write_to_file(f, input, true);
+
         for (int k = 0; k < len; k++)
         {
                 fin_outp[0] = (rand() % (arr_num + 1 - lower) + lower);
-                printf("%d ", fin_outp[0]);
+
+                sprintf(input, "%d ", fin_outp[0]);
+                write_to_file(f, input, false);
 
                 for (int i = 1; i < arr_num; i++)
                 {
@@ -187,10 +221,12 @@ void print_permutations(int arr_num, char *arr_len)
                                         j++;
                                 }
                         }
-                        printf("%d ", fin_outp[i]);
+                        sprintf(input, "%d ", fin_outp[i]);
+                        write_to_file(f, input, false);
                 }
-                printf("\n");
+                write_to_file(f, "", true);
         }
+        fclose(f);
 }
 
 int main()
