@@ -234,7 +234,7 @@ int main()
         int number_of_arrs;
         char length_of_arr[256];
 
-        puts("Podaj liczbe zbiorow oraz ich dlugosc:");
+        puts("Podaj dlugosc zbiorow oraz ich ilosc do wygenerowania:");
 
         scanf("%d", &number_of_arrs);
         scanf("%s", length_of_arr);
