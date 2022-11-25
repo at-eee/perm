@@ -14,5 +14,5 @@ Sketch of way how the program works:
 4. Output from generator is passed to another subprogram perm_processing (Jakub M).
 5. Subprogram perm_processing processes permutations to extract additional paramaters of these permutations and prepares draft version of the final ".tex" file to output (result.tex).
 6. result.tex is passed to perm.sh.
-7. perm.sh finally processes result.out to be appropriate for LaTeX.
-8. .tex file is created.
+7. perm.sh finally processes result.tex to be appropriate for LaTeX.
+8. result.pdf file is created.
