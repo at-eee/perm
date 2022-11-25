@@ -8,7 +8,7 @@ Sketch of way how the program works:
    - "n m" (m random permutations of length equal to n).
    - ! "x" command must be entered in the first line of user_input.txt file !
    - ! Every command input must be split by newline character (i.e: "enter") !
-   - ! Although last file must not be ended with enter character (bug will be fixed in future (hopefully)) !
+   - ! Although last line must not be ended with enter character (bug will be fixed in future (hopefully)) !
 2. perm.sh starts and user_input.txt is passed to it.
 3. Subprogram generator (Olek and Paweł) generates permutations.
 4. Output from generator is passed to another subprogram perm_processing (Jakub M).
