@@ -4,6 +4,9 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define INPUT_ERROR 1
+#define FILE_ERROR 2
+
 void write_to_file(FILE* file, char* input, bool nl_flag) {
         if (nl_flag) {
                 fprintf(file, "%s\n", input);
@@ -43,7 +46,7 @@ int print_permutations(int arr_num, char *arr_len)
                 FILE *f = fopen("data.txt", "w+");
 
                 if (f == NULL) {
-                        return 1;
+                        return FILE_ERROR;
                 }
 
                 write_to_file(f, input, true);
@@ -186,7 +189,7 @@ int print_permutations(int arr_num, char *arr_len)
 
         if (!is_number(arr_len))
         {
-                return 2;
+                return INPUT_ERROR;
         }
 
         srand((unsigned)time(NULL));
@@ -198,7 +201,7 @@ int print_permutations(int arr_num, char *arr_len)
         FILE* f = fopen("data.txt", "w+");
 
         if (f == NULL) {
-                return 1;
+                return FILE_ERROR;
         }
 
         sprintf(input, "%d %d", arr_num, len);
@@ -241,11 +244,17 @@ int main()
 {
         int number_of_arrs;
         char length_of_arr[256];
+        float tmp;
 
         puts("Podaj dlugosc zbiorow oraz ich ilosc do wygenerowania:");
 
-        scanf("%d", &number_of_arrs);
+        scanf("%f", &tmp);
         scanf("%s", length_of_arr);
 
-        return print_permutations(number_of_arrs, length_of_arr);
+        number_of_arrs = tmp;
+        if (tmp / number_of_arrs == 1) {
+                return print_permutations(number_of_arrs, length_of_arr);
+        } else {
+                return INPUT_ERROR;
+        }
 }
