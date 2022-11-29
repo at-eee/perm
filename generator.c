@@ -27,7 +27,7 @@ bool is_number(const char *num)
         return true;
 }
 
-void print_permutations(int arr_num, char *arr_len)
+int print_permutations(int arr_num, char *arr_len)
 {
         char input[256];
         if (!strcmp(arr_len, "A"))
@@ -112,7 +112,7 @@ void print_permutations(int arr_num, char *arr_len)
                                 }
                         }
                         fclose(f);
-                        return;
+                        return 0;
                 }
 
                 puts("");
@@ -181,13 +181,13 @@ void print_permutations(int arr_num, char *arr_len)
                         }
                 }
                 fclose(f);
-                return;
+                return 0;
         }
 
         if (!is_number(arr_len))
         {
                 puts("invalid input");
-                return;
+                return 0;
         }
 
         srand((unsigned)time(NULL));
