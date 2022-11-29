@@ -42,6 +42,10 @@ void print_permutations(int arr_num, char *arr_len)
 
                 FILE *f = fopen("data.txt", "w+");
 
+                if (f == NULL) {
+                        return -1;
+                }
+
                 write_to_file(f, input, true);
 
                 if (arr_num == 8)
@@ -193,6 +197,10 @@ void print_permutations(int arr_num, char *arr_len)
         int lower = 1;
 
         FILE* f = fopen("data.txt", "w+");
+
+        if (f == NULL) {
+                return -1;
+        }
 
         sprintf(input, "%d %d", arr_num, len);
         write_to_file(f, input, true);
