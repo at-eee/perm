@@ -12,6 +12,9 @@
 //[ENG] Warning! comments are mixed with both polish and english language as of yet.
 //[PL] Uwaga! Póki co język używany w komentarzach jest przeplatany między polskim i angielskim.
 
+int previous_permutation[100];
+int next_permutation[100];
+
 int main(int argc, char** argv) {
     
     
@@ -67,7 +70,7 @@ long long int silnia(int permutaion_length){
 
 }
 
-void base_permutation(FILE *fptr2, int permutation_length){//writes base permutation i. e: prints first "row" of the two-line notation's permutation to char base_permutation[].
+void base_permutation(FILE *fptr2, int permutation_length){//writes base permutation i. e: prints first "row" of the two-line notation's permutation.
     
     for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", i+1); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
 
@@ -89,10 +92,12 @@ void permutation_case(FILE *fptr1, FILE *fptr2, int permutation[], int permutati
             zakres_petli = permutation_amount;
         }
         
-        for(long long int j = 0; j < zakres_petli; j++){
-
-            for(int i = 0; i < permutation_length; i++) fscanf(fptr1, "%d", permutation+i);
+        //                                                      same as: permutation[i]
+        for(int i = 0; i < permutation_length; i++) fscanf(fptr1, "%d", next_permutation+i);
+        
+        for(long long int j = 0; j < zakres_petli; j++){ //1. permutation = next_permutation, 2. scan next_permutation, 3. previous_permutation = permutation, 4. back to step 1
             
+            for(int i = 0; i < permutation_length; i++) permutation[i] = next_permutation[i];
             
             fprintf(fptr2, "\\subsection{}\n");
             
@@ -111,6 +116,21 @@ void permutation_case(FILE *fptr1, FILE *fptr2, int permutation[], int permutati
             write_one_line_notation(fptr1, fptr2, permutation, permutation_length);
 
             write_cycle_notation(fptr1, fptr2, permutation, permutation_length);
+            
+            //tzw. "flag" - tutaj nazwany jako "perm_case", jednak wczesniej nazwany w functions_declarations.h jako "flag".
+            if(perm_case == 0){
+                
+                write_previous_permutation(fptr1, fptr2, permutation, permutation_length, j);
+            
+            }
+            
+            for(int i = 0; i < permutation_length; i++) fscanf(fptr1, "%d", next_permutation+i);
+            
+            if(perm_case == 0){
+                
+                write_next_permutation(fptr1, fptr2, permutation, permutation_length, j, zakres_petli);
+            
+            }
 
             write_square_of_permutation(fptr1, fptr2, permutation, permutation_length);
             
@@ -119,6 +139,8 @@ void permutation_case(FILE *fptr1, FILE *fptr2, int permutation[], int permutati
             fprintf(fptr2, "\\end{center}\n");
 
             newline; newline;
+            
+            if(perm_case == 0) for(int i = 0; i < permutation_length; i++) previous_permutation[i] = permutation[i];
 
         }
         
@@ -144,7 +166,7 @@ void write_current_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int 
 
 void write_two_line_notation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length){
     
-    fprintf(fptr2, "\tzapis permutacji w dwoch liniach (two-line notation) & $\\begin{pmatrix} ");
+    fprintf(fptr2, "\tzapis permutacji w dwóch liniach (two-line notation) & $\\begin{pmatrix} ");
     base_permutation(fptr2, permutation_length);
     fprintf(fptr2, "\\\\ \n");
     for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", permutation[i]); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
@@ -162,6 +184,34 @@ void write_one_line_notation(FILE *fptr1, FILE *fptr2, int permutation[], int pe
 
     hline;
     
+}
+
+void write_previous_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length, long long int loop_iteration){
+    
+    if(loop_iteration == 0) fprintf(fptr2, "\tPoprzednia permutacja (previous permutation) & Brak poprzedniej permutacji! (pierwsza permutacja)\\\\ \n");
+    else{
+        fprintf(fptr2, "\tpoprzednia permutacja (previous permutation) & $\\begin{pmatrix} ");
+        base_permutation(fptr2, permutation_length);
+        fprintf(fptr2, "\\\\ \n");
+        for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", previous_permutation[i]); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
+        fprintf(fptr2, "\\end{pmatrix}$ \\\\ \n");
+    }
+    hline;
+
+}
+
+void write_next_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length, long long int loop_iteration, long long int max_iteration){
+
+    if(loop_iteration == max_iteration-1) fprintf(fptr2, "\tNastępna permutacja (next permutation) & Brak następnej permutacji! (ostatnia permutacja)\\\\ \n");
+    else{
+        fprintf(fptr2, "\tnastępna permutacja (next permutation) & $\\begin{pmatrix} ");
+        base_permutation(fptr2, permutation_length);
+        fprintf(fptr2, "\\\\ \n");
+        for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", next_permutation[i]); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
+        fprintf(fptr2, "\\end{pmatrix}$ \\\\ \n");
+    }
+    hline;
+
 }
 
 void write_square_of_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length){
