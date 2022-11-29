@@ -43,7 +43,7 @@ int print_permutations(int arr_num, char *arr_len)
                 FILE *f = fopen("data.txt", "w+");
 
                 if (f == NULL) {
-                        return -1;
+                        return 1;
                 }
 
                 write_to_file(f, input, true);
@@ -186,8 +186,7 @@ int print_permutations(int arr_num, char *arr_len)
 
         if (!is_number(arr_len))
         {
-                puts("invalid input");
-                return 0;
+                return 2;
         }
 
         srand((unsigned)time(NULL));
@@ -199,7 +198,7 @@ int print_permutations(int arr_num, char *arr_len)
         FILE* f = fopen("data.txt", "w+");
 
         if (f == NULL) {
-                return -1;
+                return 1;
         }
 
         sprintf(input, "%d %d", arr_num, len);
@@ -235,6 +234,7 @@ int print_permutations(int arr_num, char *arr_len)
                 write_to_file(f, "", true);
         }
         fclose(f);
+        return 0;
 }
 
 int main()
@@ -247,7 +247,5 @@ int main()
         scanf("%d", &number_of_arrs);
         scanf("%s", length_of_arr);
 
-        print_permutations(number_of_arrs, length_of_arr);
-
-        return 0;
+        return print_permutations(number_of_arrs, length_of_arr);
 }
