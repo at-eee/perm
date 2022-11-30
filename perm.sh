@@ -4,6 +4,19 @@ x=$(head -1 user_input.txt) #pobiera liczbÄ™ permutacji do wygenerowania, podanÄ
 
 rm -f result.tex
 
+if (($(wc -l user_input.txt | cut -d" " -f1) > $x))
+then
+	echo 'Podano zbyt wiele polecen/permutacji!!!'
+	exit 2
+elif (($(wc -l user_input.txt | cut -d" " -f1) < $x))
+then
+	echo 'Podano zbyt malo permutacji w stosunku do ich podanej ilosci!!!'
+	exit 1
+fi
+
+./input_checker.out user_input.txt
+if (($? != 0)); then exit; fi
+
 echo '\documentclass[12pt]{article}' >> result.tex
 echo '\usepackage{amsmath}' >> result.tex
 echo '\usepackage[T1]{fontenc}' >> result.tex
