@@ -4,6 +4,9 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define INPUT_ERROR 1
+#define FILE_ERROR 2
+
 void write_to_file(FILE* file, char* input, bool nl_flag) {
         if (nl_flag) {
                 fprintf(file, "%s\n", input);
@@ -27,7 +30,7 @@ bool is_number(const char *num)
         return true;
 }
 
-void print_permutations(int arr_num, char *arr_len)
+int print_permutations(int arr_num, char *arr_len)
 {
         char input[256];
         if (!strcmp(arr_len, "A"))
@@ -41,6 +44,10 @@ void print_permutations(int arr_num, char *arr_len)
                 sprintf(input, "%d A", arr_num);
 
                 FILE *f = fopen("data.txt", "w+");
+
+                if (f == NULL) {
+                        return FILE_ERROR;
+                }
 
                 write_to_file(f, input, true);
 
@@ -108,7 +115,7 @@ void print_permutations(int arr_num, char *arr_len)
                                 }
                         }
                         fclose(f);
-                        return;
+                        return 0;
                 }
 
                 puts("");
@@ -177,13 +184,12 @@ void print_permutations(int arr_num, char *arr_len)
                         }
                 }
                 fclose(f);
-                return;
+                return 0;
         }
 
         if (!is_number(arr_len))
         {
-                puts("invalid input");
-                return;
+                return INPUT_ERROR;
         }
 
         srand((unsigned)time(NULL));
@@ -193,6 +199,10 @@ void print_permutations(int arr_num, char *arr_len)
         int lower = 1;
 
         FILE* f = fopen("data.txt", "w+");
+
+        if (f == NULL) {
+                return FILE_ERROR;
+        }
 
         sprintf(input, "%d %d", arr_num, len);
         write_to_file(f, input, true);
@@ -227,19 +237,24 @@ void print_permutations(int arr_num, char *arr_len)
                 write_to_file(f, "", true);
         }
         fclose(f);
+        return 0;
 }
 
 int main()
 {
         int number_of_arrs;
         char length_of_arr[256];
+        float tmp;
 
         puts("Podaj dlugosc zbiorow oraz ich ilosc do wygenerowania:");
 
-        scanf("%d", &number_of_arrs);
+        scanf("%f", &tmp);
         scanf("%s", length_of_arr);
 
-        print_permutations(number_of_arrs, length_of_arr);
-
-        return 0;
+        number_of_arrs = tmp;
+        if (tmp / number_of_arrs == 1) {
+                return print_permutations(number_of_arrs, length_of_arr);
+        } else {
+                return INPUT_ERROR;
+        }
 }
