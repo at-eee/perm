@@ -34,6 +34,10 @@ int main(int argc, char** argv) {
     
     fptr2 = fopen("result.tex", "a");
     
+    if (fptr2 == NULL) {
+        return 1;
+    }
+    
     switch(permutation_type[0]){
     
         case 'A':
@@ -166,7 +170,7 @@ void write_current_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int 
 
 void write_two_line_notation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length){
     
-    fprintf(fptr2, "\tzapis permutacji w dwóch liniach (two-line notation) & $\\begin{pmatrix} ");
+    fprintf(fptr2, "\tZapis permutacji w dwóch liniach (two-line notation) & $\\begin{pmatrix} ");
     base_permutation(fptr2, permutation_length);
     fprintf(fptr2, "\\\\ \n");
     for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", permutation[i]); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
@@ -178,7 +182,7 @@ void write_two_line_notation(FILE *fptr1, FILE *fptr2, int permutation[], int pe
 
 void write_one_line_notation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length){
     
-    fprintf(fptr2, "\tzapis permutacji w jednej linii (one-line notation) & $\\begin{pmatrix} ");
+    fprintf(fptr2, "\tZapis permutacji w jednej linii (one-line notation) & $\\begin{pmatrix} ");
     for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", permutation[i]); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
     fprintf(fptr2, "\\end{pmatrix}$ \\\\ \n");
 
@@ -190,7 +194,7 @@ void write_previous_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int
     
     if(loop_iteration == 0) fprintf(fptr2, "\tPoprzednia permutacja (previous permutation) & Brak poprzedniej permutacji! (pierwsza permutacja)\\\\ \n");
     else{
-        fprintf(fptr2, "\tpoprzednia permutacja (previous permutation) & $\\begin{pmatrix} ");
+        fprintf(fptr2, "\tPoprzednia permutacja (previous permutation) & $\\begin{pmatrix} ");
         base_permutation(fptr2, permutation_length);
         fprintf(fptr2, "\\\\ \n");
         for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", previous_permutation[i]); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
@@ -204,7 +208,7 @@ void write_next_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int per
 
     if(loop_iteration == max_iteration-1) fprintf(fptr2, "\tNastępna permutacja (next permutation) & Brak następnej permutacji! (ostatnia permutacja)\\\\ \n");
     else{
-        fprintf(fptr2, "\tnastępna permutacja (next permutation) & $\\begin{pmatrix} ");
+        fprintf(fptr2, "\tNastępna permutacja (next permutation) & $\\begin{pmatrix} ");
         base_permutation(fptr2, permutation_length);
         fprintf(fptr2, "\\\\ \n");
         for(int i = 0; i < permutation_length; i++) {fprintf(fptr2, "%d ", next_permutation[i]); if(i!=permutation_length-1) fprintf(fptr2, "& ");}
@@ -216,7 +220,7 @@ void write_next_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int per
 
 void write_square_of_permutation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length){
 
-    fprintf(fptr2, "\tzlozenie permutacji samej ze soba (kwadrat permutacji (permutation's square)) & $\\begin{pmatrix} ");
+    fprintf(fptr2, "\tZłożenie permutacji samej ze sobą (kwadrat permutacji (permutation's square)) & $\\begin{pmatrix} ");
     base_permutation(fptr2, permutation_length);
     fprintf(fptr2, "\\\\ \n");
     int composed_permutation[permutation_length];//--
@@ -244,7 +248,7 @@ void write_cycle_notation(FILE *fptr1, FILE *fptr2, int permutation[], int permu
     bool used_indexes[9] = {0};//scisle zwiazane z permutation_length.
     int next_index;//nastepny indeks, ktory ma byc sprawdzany
     
-    fprintf(fptr2, "\tzapis permutacji w postaci cyklicznej (cycle notation) & $");
+    fprintf(fptr2, "\tZapis permutacji w postaci cyklicznej (cycle notation) & $");
 
     for(int i = 0; i < permutation_length; i++){//najpierw sprawdzany czy istnieje cykl liczby samej ze soba.
 
