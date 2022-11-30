@@ -16,3 +16,6 @@ Sketch of way how the program works:
 6. result.tex is passed to perm.sh.
 7. perm.sh finally processes result.tex to be appropriate for LaTeX.
 8. result.pdf file is created.
+
+note: user takes resposibility of erroneous program results due to invalid input.
+IMPORTANT!: Already pre-compiled full program is present in the "build_1.1" folder BUT it is compiled/intended for and ONLY FOR XUBUNTU Operating System!!!
