@@ -1,20 +1,25 @@
 #!/bin/bash
 
+cd CBuild/
+make
+cd ..
+
 x=$(head -1 user_input.txt) #pobiera liczbę permutacji do wygenerowania, podaną przez użytkownika.
 
 rm -f result.tex
 
-if (($(wc -l user_input.txt | cut -d" " -f1) > $x))
+
+if (($(wc -l user_input.txt | cut -d" " -f1)-1 > $x))
 then
 	echo 'Podano zbyt wiele polecen/permutacji!!!'
 	exit 2
-elif (($(wc -l user_input.txt | cut -d" " -f1) < $x))
+elif (($(wc -l user_input.txt | cut -d" " -f1)-1 < $x))
 then
 	echo 'Podano zbyt malo permutacji w stosunku do ich podanej ilosci!!!'
 	exit 1
 fi
 
-./input_checker.out user_input.txt
+./CBuild/input_checker.out user_input.txt
 if (($? != 0)); then exit; fi
 
 echo '\documentclass[12pt]{article}' >> result.tex
@@ -34,8 +39,8 @@ echo '\hfill' >> result.tex
 var1=1
 while (($var1 <= $x))
 do
-	head -$(($var1+1)) user_input.txt | tail -1 |./generator.out
-	./perm_processing.out $var1
+	head -$(($var1+1)) user_input.txt | tail -1 |./CBuild/generator.out
+	./CBuild/perm_processing.out $var1
 	((var1++))
 done
 

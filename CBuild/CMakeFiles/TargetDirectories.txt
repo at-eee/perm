@@ -1,0 +1,5 @@
+/home/olek/Downloads/perm-main/build_1.1/CBuild/CMakeFiles/generator.out.dir
+/home/olek/Downloads/perm-main/build_1.1/CBuild/CMakeFiles/input_checker.out.dir
+/home/olek/Downloads/perm-main/build_1.1/CBuild/CMakeFiles/perm_processing.out.dir
+/home/olek/Downloads/perm-main/build_1.1/CBuild/CMakeFiles/edit_cache.dir
+/home/olek/Downloads/perm-main/build_1.1/CBuild/CMakeFiles/rebuild_cache.dir
