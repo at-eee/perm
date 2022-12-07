@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
             
             if(word[i] != 'A' && !isdigit(word[i])){
                 printf("Blad!!! w %s podano nieprawidlowy znak!\n", argv[1]);
-                return 1;
+                return 3;
             }
             
             i++;
@@ -32,5 +32,7 @@ int main(int argc, char** argv) {
     }
     
     fclose(fptr1);
+
+    return 0;
 }
 

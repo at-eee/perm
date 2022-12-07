@@ -302,4 +302,6 @@ void write_cycle_notation(FILE *fptr1, FILE *fptr2, int permutation[], int permu
     
     hline;
 
+    return 0;
+
 }
