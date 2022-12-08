@@ -1,20 +1,50 @@
 # perm
 
-Sketch of way how the program works:
+## Download
+Download the project by entering this command to the terminal:
+```bash
+git clone https://github.com/at-eee/perm.git
+```
+or use the "Download ZIP" option from the [Github](https://github.com/at-eee/perm) page.
 
-1. User enters desired permutations to generate to user_input.txt in the following (command) format:
-   - "x" Number of permutations to generate.
-   - "n A" (All permutations of length equal to n (max 8))
-   - "n m" (m random permutations of length equal to n).
-   - ! "x" command must be entered in the first line of user_input.txt file !
-   - ! Every command input must be split by newline character (i.e: "enter") !
-   - ! Although last line must not be ended with enter character !
-2. perm.sh starts and user_input.txt is passed to it.
-3. Subprogram generator (Olek and Paweł) generates permutations.
-4. Output from generator is passed to another subprogram perm_processing (Jakub M).
-5. Subprogram perm_processing processes permutations to extract additional paramaters of these permutations and prepares draft version of the final ".tex" file to output (result.tex).
-6. result.tex is passed to perm.sh.
-7. perm.sh finally processes result.tex to be appropriate for LaTeX.
-8. result.pdf file is created.
+## Usage
+Open the __user_input.txt__ and enter the number of data samples to generate followed by permutation details in "n m" format, where:\
+&nbsp;&nbsp;&nbsp;&nbsp;n - number of permutation elements (max value of 8 due to O(n!) time complexity)\
+&nbsp;&nbsp;&nbsp;&nbsp;m - number of permutations ('A' for all permutations)
 
-note: user takes resposibility of erroneous program results due to invalid input.
+<br/>
+
+Sample __user_input.txt__ file:
+```txt
+5
+4 A
+3 5
+6 2
+7 7
+5 2
+```
+
+### Running the script:
+```bash
+./perm.sh 
+```
+
+__Note__: user takes resposibility of erroneous program results due to invalid input.
+
+## Error codes:
+- 1: not enough permutations listed
+- 2: too many permutations listed
+- 3: inappriopriate character found in user_input.txt
+- 10: couldn't create "make.log" file.
+- 11: couldn't change "make.log" file permissions.
+- 12: couldn't remove "result.tex" (the one created during the last time program was started).
+- 13: couldn't create "result.tex" file.
+- 14: couldn't change "result.tex" file permissions.
+- 15: couldn't create "gen.log" file.
+- 16: couldn't change "gen.log" file permissions.
+- 17: couldn't remove "result.pdf" (the one created during the last time program was started).
+- 18: couldn't create "result.pdf" file.
+- 19: couldn't change "result.pdf" file permissions.
+- 20: couldn't create "tex.log" file.
+- 21: couldn't change "tex.log" file permissions.
+- 30: Error returned from pdflatex.
