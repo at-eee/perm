@@ -42,9 +42,9 @@ int main(int argc, char** argv) {
     
         case 'A':
             
-            permutation_amount = NULL;
+            //permutation_amount = NULL;
             
-            permutation_case(fptr1, fptr2, permutation, permutation_length, permutation_amount, 0, argv);
+            permutation_case(fptr1, fptr2, permutation, permutation_length, 0, 0, argv);
             
             break;
         
@@ -301,7 +301,5 @@ void write_cycle_notation(FILE *fptr1, FILE *fptr2, int permutation[], int permu
     fprintf(fptr2, "$ \\\\ \n");
     
     hline;
-
-    return 0;
 
 }
