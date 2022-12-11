@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/input_checker.out.dir/input_checker.c.o -o input_checker.out 

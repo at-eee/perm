@@ -10,17 +10,6 @@ bug_check(){
 
 }
 
-cd CBuild/
-
-touch make.log
-bug_check 'Nie udalo sie utworzyc pliku "make.log".' 10
-
-chmod 766 make.log
-bug_check 'Nie udalo sie zmienic uprawnien dla pliku "make.log".' 11
-
-make 2> make.log
-cd ..
-
 x=$(head -1 user_input.txt) #pobiera liczbę permutacji do wygenerowania, podaną przez użytkownika.
 
 rm -f result.tex

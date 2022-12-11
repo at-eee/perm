@@ -47,4 +47,9 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 19: couldn't change "result.pdf" file permissions.
 - 20: couldn't create "tex.log" file.
 - 21: couldn't change "tex.log" file permissions.
-- 30: Error returned from pdflatex.
+- 22: coudln't create CBuild folder or user doesn't have permissions to do so.
+- 23: couldn't change permission settings for CBuild folder (and its files/subfolders i.e: Recursively).
+- 30: Error returned from the pdflatex program.
+- 31: Error returned from the cmake program
+- 32: Error returned from the make program
+
