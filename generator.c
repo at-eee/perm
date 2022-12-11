@@ -35,10 +35,8 @@ int print_permutations(int arr_num, char *arr_len)
         char input[256];
         if (!strcmp(arr_len, "A"))
         {
-                while (arr_num > 9)
-                {
-                        printf("W trosce o twoj dysk prosimy o podanie liczby z zakresu 1-9:\n");
-                        scanf("%d", &arr_num);
+                if (arr_num > 9) {
+                        return 7;
                 }
 
                 sprintf(input, "%d A", arr_num);
