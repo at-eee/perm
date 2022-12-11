@@ -8,23 +8,28 @@
 #define newline fprintf(fptr2, "\n")
 #define tabulator fprintf(fptr2, "\t")
 #define hline fprintf(fptr2, "\t\\hline\n")//Stands for: horizontal line.
+#define buffer_size 100
 
 //[ENG] Warning! comments are mixed with both polish and english language as of yet.
 //[PL] Uwaga! Póki co język używany w komentarzach jest przeplatany między polskim i angielskim.
 
-int previous_permutation[100];
-int next_permutation[100];
+int previous_permutation[buffer_size];
+int next_permutation[buffer_size];
 
 int main(int argc, char** argv) {
     
     
-    int permutation[100];
+    int permutation[buffer_size];
     int permutation_length;
     char permutation_type[4] = {' '};
     
     FILE *fptr1;
     
     fptr1 = fopen("data.txt", "r");
+
+    if (fptr1 == NULL) {
+        return 1;
+    }
     
     fscanf(fptr1, "%d", &permutation_length);
     fscanf(fptr1, "%s", permutation_type);
@@ -35,7 +40,7 @@ int main(int argc, char** argv) {
     fptr2 = fopen("result.tex", "a");
     
     if (fptr2 == NULL) {
-        return 1;
+        return 2;
     }
     
     switch(permutation_type[0]){
