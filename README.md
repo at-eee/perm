@@ -35,6 +35,8 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 1: not enough permutations listed
 - 2: too many permutations listed
 - 3: inappriopriate character found in user_input.txt
+- 4: user requested all permutations of the permutation of length greater than 9.
+- 5: user requested permutation of length greater than 100 (too big for a defined buffer (100)).
 - 12: couldn't remove "result.tex" (the one created during the last time program was started).
 - 13: couldn't create "result.tex" file.
 - 14: couldn't change "result.tex" file permissions.
@@ -48,6 +50,7 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 22: coudln't create CBuild folder or user doesn't have permissions to do so.
 - 23: couldn't change permission settings for CBuild folder (and its files/subfolders i.e: Recursively).
 - 30: Error returned from the pdflatex program.
-- 31: Error returned from the cmake program
-- 32: Error returned from the make program
-
+- 31: Error returned from the cmake program.
+- 32: Error returned from the make program.
+- 33: Error of the "perm_processing.out" subprogram.
+- 34: Error of the "generator.out" subprogram.

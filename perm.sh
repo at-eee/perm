@@ -32,7 +32,7 @@ then
 fi
 
 ./CBuild/input_checker.out user_input.txt
-if (($? != 0)); then exit; fi
+if (($? != 0)); then exit 3; fi
 
 echo '\documentclass[12pt]{article}' >> result.tex
 echo '\usepackage{amsmath}' >> result.tex
@@ -56,8 +56,20 @@ bug_check 'Nie udalo sie zmienic uprawnien dla pliku "gen.log". Koncze dzialanie
 var1=1
 while (($var1 <= $x))
 do
+	if (($(head -$(($var1+1)) user_input.txt | tail -1 | cut -d ' ' -f 1) > 100))
+	then 
+		echo 'Uzytkownik zazadal wypisania permutacji o dlugosci wiekszej niz 100!!! Koncze dzialanie programu.' 
+		exit 5
+	fi
 	head -$(($var1+1)) user_input.txt | tail -1 |./CBuild/generator.out > gen.log
+	if (($? == 7)) 
+	then 
+		echo 'Uzytkownik zazadal wypisania wszystkich permutacji, permutacji o dlugosci wiekszej niz 9! Koncze dzialanie programu.' 
+		exit 4
+	fi
+	bug_check 'Blad podprogramu generator.out' 34
 	./CBuild/perm_processing.out $var1
+	bug_check 'Blad podprogramu perm_processing.out' 33
 	((var1++))
 done
 
@@ -67,7 +79,7 @@ rm -f result.pdf
 bug_check 'Nie udalo sie usunac pliku "result.tex" z poprzedniego wykonania programu.' 17
 
 touch result.pdf
-bug_check 'Nie udalo sie usunac pliku "result.tex" z poprzedniego wykonania programu.' 18
+bug_check 'Nie udalo sie utworzyc pliku "result.tex". Koncze dzialanie programu.' 18
 
 chmod u+rwx result.pdf
 bug_check 'Nie udalo sie zmienic uprawnien dla pliku "result.tex". Koncze dzialanie programu.' 19
