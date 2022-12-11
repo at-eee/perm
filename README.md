@@ -9,7 +9,7 @@ or use the "Download ZIP" option from the [Github](https://github.com/at-eee/per
 
 ## Usage
 Open the __user_input.txt__ and enter the number of data samples to generate followed by permutation details in "n m" format, where:\
-&nbsp;&nbsp;&nbsp;&nbsp;n - number of permutation elements (max value of 8 due to O(n!) time complexity)\
+&nbsp;&nbsp;&nbsp;&nbsp;n - number of permutation elements (max value of 9 due to O(n!) time complexity)\
 &nbsp;&nbsp;&nbsp;&nbsp;m - number of permutations ('A' for all permutations)
 
 <br/>
@@ -36,7 +36,7 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 2: too many permutations listed
 - 3: inappriopriate character found in user_input.txt
 - 4: user requested all permutations of the permutation of length greater than 9.
-- 5: user requested permutation of length greater than 100 (too big for a defined buffer (100)).
+- 5: user requested permutation of length greater than 100 (too big for the defined buffer i.e: 100).
 - 12: couldn't remove "result.tex" (the one created during the last time program was started).
 - 13: couldn't create "result.tex" file.
 - 14: couldn't change "result.tex" file permissions.
