@@ -35,8 +35,6 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 1: not enough permutations listed
 - 2: too many permutations listed
 - 3: inappriopriate character found in user_input.txt
-- 10: couldn't create "make.log" file.
-- 11: couldn't change "make.log" file permissions.
 - 12: couldn't remove "result.tex" (the one created during the last time program was started).
 - 13: couldn't create "result.tex" file.
 - 14: couldn't change "result.tex" file permissions.
