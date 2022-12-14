@@ -56,9 +56,9 @@ bug_check 'Nie udalo sie zmienic uprawnien dla pliku "gen.log". Koncze dzialanie
 var1=1
 while (($var1 <= $x))
 do
-	if (($(head -$(($var1+1)) user_input.txt | tail -1 | cut -d ' ' -f 1) > 100))
+	if (($(head -$(($var1+1)) user_input.txt | tail -1 | cut -d ' ' -f 1) > 10))
 	then 
-		echo 'Uzytkownik zazadal wypisania permutacji o dlugosci wiekszej niz 100!!! Koncze dzialanie programu.' 
+		echo 'Uzytkownik zazadal wypisania permutacji o dlugosci wiekszej niz 10!!! Koncze dzialanie programu.' 
 		exit 5
 	fi
 	head -$(($var1+1)) user_input.txt | tail -1 |./CBuild/generator.out > gen.log

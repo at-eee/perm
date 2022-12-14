@@ -8,7 +8,7 @@
 #define newline fprintf(fptr2, "\n")
 #define tabulator fprintf(fptr2, "\t")
 #define hline fprintf(fptr2, "\t\\hline\n")//Stands for: horizontal line.
-#define buffer_size 100
+#define buffer_size 10
 
 //[ENG] Warning! comments are mixed with both polish and english language as of yet.
 //[PL] Uwaga! Póki co język używany w komentarzach jest przeplatany między polskim i angielskim.
