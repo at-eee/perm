@@ -250,7 +250,7 @@ void compute_composition(int permutation[], int* composed_permutation, int permu
 void write_cycle_notation(FILE *fptr1, FILE *fptr2, int permutation[], int permutation_length){
     
     bool finished;
-    bool used_indexes[9] = {0};//scisle zwiazane z permutation_length.
+    bool used_indexes[buffer_size] = {0};//scisle zwiazane z permutation_length.
     int next_index;//nastepny indeks, ktory ma byc sprawdzany
     
     fprintf(fptr2, "\tZapis permutacji w postaci cyklicznej (cycle notation) & $");
