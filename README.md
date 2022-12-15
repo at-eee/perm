@@ -7,6 +7,25 @@ git clone https://github.com/at-eee/perm.git
 ```
 or use the "Download ZIP" option from the [Github](https://github.com/at-eee/perm) page.
 
+## Quick Setup
+Required packages:
+* pdflatex
+* gcc
+* g++
+* cmake (version 3.25.0 or later)
+
+Make sure to install them by entering those commands to the terminal:
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install pdflatex gcc g++ cmake
+```
+
+Install the program by typing this command to the terminal:
+```bash
+./install.sh
+```
+
 ## Usage
 Open the __user_input.txt__ and enter the number of data samples to generate followed by permutation details in "n m" format, where:\
 &nbsp;&nbsp;&nbsp;&nbsp;n - number of permutation elements (max value of 9 due to O(n!) time complexity)\
@@ -31,7 +50,7 @@ Sample __user_input.txt__ file:
 
 __Note__: user takes resposibility of erroneous program results due to invalid input.
 
-## Error codes:
+## Error codes
 - 1: not enough permutations listed
 - 2: too many permutations listed
 - 3: inappriopriate character found in user_input.txt
