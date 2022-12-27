@@ -31,7 +31,7 @@ then
 	exit 1
 fi
 
-./CBuild/input_checker.out user_input.txt
+./build/input_checker.out user_input.txt
 if (($? != 0)); then exit 3; fi
 
 echo '\documentclass[12pt]{article}' >> result.tex
@@ -47,10 +47,12 @@ echo "Zażądana ilość osobnych rodzajów permutacji do wygenerowania: $x" >> 
 echo '\end{flushleft}' >> result.tex
 echo '\hfill' >> result.tex
 
-touch gen.log
+mkdir logs
+
+touch ./logs/gen.log
 bug_check 'Nie udalo sie utworzyc pliku "gen.log". Koncze dzialanie programu.' 15
 
-chmod u+rw gen.log
+chmod u+rw ./logs/gen.log
 bug_check 'Nie udalo sie zmienic uprawnien dla pliku "gen.log". Koncze dzialanie programu.' 16
 
 var1=1
@@ -61,14 +63,14 @@ do
 		echo 'Uzytkownik zazadal wypisania permutacji o dlugosci wiekszej niz 10!!! Koncze dzialanie programu.' 
 		exit 5
 	fi
-	head -$(($var1+1)) user_input.txt | tail -1 |./CBuild/generator.out > gen.log
+	head -$(($var1+1)) user_input.txt | tail -1 |./build/generator.out > ./logs/gen.log
 	if (($? == 7)) 
 	then 
 		echo 'Uzytkownik zazadal wypisania wszystkich permutacji, permutacji o dlugosci wiekszej niz 9! Koncze dzialanie programu.' 
 		exit 4
 	fi
 	bug_check 'Blad podprogramu generator.out' 34
-	./CBuild/perm_processing.out $var1
+	./build/perm_processing.out $var1
 	bug_check 'Blad podprogramu perm_processing.out' 33
 	((var1++))
 done
@@ -76,20 +78,24 @@ done
 echo '\end{document}' >> result.tex
 
 rm -f result.pdf
-bug_check 'Nie udalo sie usunac pliku "result.tex" z poprzedniego wykonania programu.' 17
+bug_check 'Nie udalo sie usunac pliku "result.pdf" z poprzedniego wykonania programu.' 17
 
 touch result.pdf
-bug_check 'Nie udalo sie utworzyc pliku "result.tex". Koncze dzialanie programu.' 18
+bug_check 'Nie udalo sie utworzyc pliku "result.pdf". Koncze dzialanie programu.' 18
 
 chmod u+rwx result.pdf
-bug_check 'Nie udalo sie zmienic uprawnien dla pliku "result.tex". Koncze dzialanie programu.' 19
+bug_check 'Nie udalo sie zmienic uprawnien dla pliku "result.pdf". Koncze dzialanie programu.' 19
 
-touch tex.log
-bug_check 'Nie udalo sie utworzyc pliku "gen.log". Koncze dzialanie programu.' 20
+touch ./logs/tex.log
+bug_check 'Nie udalo sie utworzyc pliku "tex.log". Koncze dzialanie programu.' 20
 
-chmod u+rw tex.log
-bug_check 'Nie udalo sie zmienic uprawnien dla pliku "gen.log". Koncze dzialanie programu.' 21
+chmod u+rw ./logs/tex.log
+bug_check 'Nie udalo sie zmienic uprawnien dla pliku "tex.log". Koncze dzialanie programu.' 21
 
-pdflatex result.tex > tex.log
+pdflatex result.tex > ./logs/tex.log
 
 bug_check 'Blad programu pdflatex.' 30
+
+rm -f result.aux
+rm -f data.txt
+mv result.tex logs/
