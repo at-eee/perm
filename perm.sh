@@ -48,6 +48,7 @@ echo '\end{flushleft}' >> result.tex
 echo '\hfill' >> result.tex
 
 mkdir logs
+bug_check 'Nie udalo sie utworzyc folderu "logs/". Koncze dzialanie programu.' 27
 
 touch ./logs/gen.log
 bug_check 'Nie udalo sie utworzyc pliku "gen.log". Koncze dzialanie programu.' 15
@@ -97,5 +98,10 @@ pdflatex result.tex > ./logs/tex.log
 bug_check 'Blad programu pdflatex.' 30
 
 rm -f result.aux
+bug_check 'Nie udalo sie usunac pliku "result.aux". Koncze dzialanie programu.' 24
+
 rm -f data.txt
+bug_check 'Nie udalo sie usunac pliku "data.txt". Koncze dzialanie programu.' 25
+
 mv result.tex logs/
+bug_check 'Nie udalo sie przeniesc pliku "result.tex" do folderu "logs/". Koncze dzialanie programu.' 26
