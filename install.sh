@@ -38,18 +38,17 @@ cd ..
 chmod u+rwx -R build
 bug_check 'Nie udalo sie zmienic uprawnien dla Folderu build.' 23 0
 
-echo 'Czy chcesz dodac do programu pakiet do testowania?'
-echo 'Wpisz "tak" aby zainstalowac, wpisz cokolwiek innego aby nie instalowac.'
+#echo 'Czy chcesz dodac do programu pakiet do testowania?'
+#echo 'Wpisz "tak" aby zainstalowac, wpisz cokolwiek innego aby nie instalowac.'
+echo 'Czy zainstalowac rowniez pakiet do testowania? [y/n]:'
 read input
-if [ $input = "tak" ]
+if [ $input = "y" ]
 then
 	echo 'instaluje pakiet do testowania...'
+	mkdir test 
+	#bug_check 'Nie udalo sie utworzyc folderu build,' ?? 1
+	#?? - trzeba omowic jakie error code'sy beda dla niego (zwiazane z programem testing.sh) dawane.
+
+	cp ./src/testing.sh ./test/
+	#bug_check 'Nie udalo sie skopiowac programu testing.sh z folderu src/ do folderu test/,' ?? 1
 fi
-
-mkdir test 
-#bug_check 'Nie udalo sie utworzyc folderu build,' ?? 1
-#?? - trzeba omowic jakie error code'sy beda dla niego (zwiazane z programem testing.sh) dawane.
-
-cp ./src/testing.sh ./test/
-#bug_check 'Nie udalo sie skopiowac programu testing.sh z folderu src/ do folderu test/,' ?? 1
-
