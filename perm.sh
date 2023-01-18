@@ -32,7 +32,7 @@ then
 fi
 
 ./build/input_checker.out user_input.txt
-if (($? != 0)); then exit 3; fi
+if (($? != 0)); then exit 3; fi #napisane w taki sposob (bez uzycia bug_check), bo komunikat bledu jest wypisywany przez input_checker.out
 
 echo '\documentclass[12pt]{article}' >> result.tex
 echo '\usepackage{amsmath}' >> result.tex
@@ -46,6 +46,9 @@ echo 'Informacje początkowe:\\[\baselineskip]' >> result.tex
 echo "Zażądana ilość osobnych rodzajów permutacji do wygenerowania: $x" >> result.tex
 echo '\end{flushleft}' >> result.tex
 echo '\hfill' >> result.tex
+
+rm -rf logs
+bug_check 'Nie udalo sie usunac folderu "logs/" z poprzedniej iteracji programu. Koncze dzialanie programu.' 28
 
 mkdir logs
 bug_check 'Nie udalo sie utworzyc folderu "logs/". Koncze dzialanie programu.' 27

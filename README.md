@@ -72,6 +72,7 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 25: couldn't remove "data.txt" file. (not a critical error).
 - 26: couldn't move "result.tex" file to "logs/" directory. (not a critical error).
 - 27: couldn't create "logs/" directory.
+- 28: couldn't remove "logs/" directory from the last program's session.
 - 30: Error returned from the pdflatex program.
 - 31: Error returned from the cmake program.
 - 32: Error returned from the make program.
