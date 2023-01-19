@@ -11,6 +11,13 @@ bug_check(){
 		echo 'Przerywam dzialanie instalatora.'
 		exit $2
 	fi
+	if (($? != 0 && $3 == 2))
+	then 
+		echo $1
+		echo "badz program do testowania jest juz zainstalowany w tym (obecnym) folderze ($location)."
+		echo 'Przerywam dzialanie instalatora.'
+		exit $2
+	fi
 	if (($? != 0))
 	then
 		echo $1
@@ -38,17 +45,22 @@ cd ..
 chmod u+rwx -R build
 bug_check 'Nie udalo sie zmienic uprawnien dla Folderu build.' 23 0
 
-#echo 'Czy chcesz dodac do programu pakiet do testowania?'
-#echo 'Wpisz "tak" aby zainstalowac, wpisz cokolwiek innego aby nie instalowac.'
+mkdir bin
+
+mv build/generator.out build/input_checker.out build/perm_processing.out build/rdg.out bin/
+
+
 echo 'Czy zainstalowac rowniez pakiet do testowania? [y/n]:'
 read input
 if [ $input = "y" ]
 then
 	echo 'instaluje pakiet do testowania...'
-	mkdir test 
-	#bug_check 'Nie udalo sie utworzyc folderu build,' ?? 1
-	#?? - trzeba omowic jakie error code'sy beda dla niego (zwiazane z programem testing.sh) dawane.
+	mkdir test
+	bug_check 'Nie udalo sie utworzyc folderu test,' 41 2
+	#mkdir test/bin/
+	gcc src/input_checker2.c -o bin/input_checker2.out
+	bug_check 'Nie udalo sie skompilowac podprogramu input_checker2.out - blad gcc,' 42 2
 
 	cp ./src/testing.sh ./test/
-	#bug_check 'Nie udalo sie skopiowac programu testing.sh z folderu src/ do folderu test/,' ?? 1
+	bug_check 'Nie udalo sie skopiowac programu testing.sh z folderu src/ do folderu test/,' 43 2
 fi

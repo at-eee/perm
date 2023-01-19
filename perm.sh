@@ -101,10 +101,10 @@ pdflatex result.tex > ./logs/tex.log
 bug_check 'Blad programu pdflatex.' 30
 
 rm -f result.aux
-bug_check 'Nie udalo sie usunac pliku "result.aux". Koncze dzialanie programu.' 24
+bug_check 'Nie udalo sie usunac pliku "result.aux".' 24
 
 rm -f data.txt
-bug_check 'Nie udalo sie usunac pliku "data.txt". Koncze dzialanie programu.' 25
+bug_check 'Nie udalo sie usunac pliku "data.txt".' 25
 
 mv result.tex logs/
-bug_check 'Nie udalo sie przeniesc pliku "result.tex" do folderu "logs/". Koncze dzialanie programu.' 26
+bug_check 'Nie udalo sie przeniesc pliku "result.tex" do folderu "logs/".' 26
