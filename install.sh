@@ -56,7 +56,7 @@ if [ $input = "y" ]
 then
 	echo 'instaluje pakiet do testowania...'
 	mkdir test
-	bug_check 'Nie udalo sie utworzyc folderu test,' 41 2
+	bug_check 'Nie udalo sie utworzyc folderu test/,' 41 2
 	#mkdir test/bin/
 	gcc src/input_checker2.c -o bin/input_checker2.out
 	bug_check 'Nie udalo sie skompilowac podprogramu input_checker2.out - blad gcc,' 42 2
