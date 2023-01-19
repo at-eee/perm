@@ -78,3 +78,4 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 32: Error returned from the make program.
 - 33: Error of the "perm_processing.out" subprogram.
 - 34: Error of the "generator.out" subprogram.
+- 35: Invalid arguments for the random data generator.
