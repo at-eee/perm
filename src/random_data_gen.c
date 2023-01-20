@@ -15,8 +15,8 @@ void generate_random_pair(FILE *file, int upper) {
 }
 
 int main(int argc, char **argv) {
-    if (argc != 4) {
-        fprintf(stderr, "[ERROR - 35]: 3 arguments required. Aborting...\n");
+    if (argc != 3) {
+        fprintf(stderr, "[ERROR - 35]: 2 arguments required. Aborting...\n");
         exit(35);
     }
 

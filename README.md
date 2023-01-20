@@ -78,11 +78,11 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 32: Error returned from the make program.
 - 33: Error of the "perm_processing.out" subprogram.
 - 34: Error of the "generator.out" subprogram.
-- 35: Invalid arguments for the random data generator.
+- 35: Invalid arguments for the random data generator or error of random data generator itself.
 ### Error codes related to (additional) testing package:
 - 41: couldn't create "test/" directory.
-- 42: unable to compile input_checker2.c - Error returned from gcc compiler.
-- 43: couldn't copy "testing.sh" file to "test/" directory.
+- 42: unable to compile input_checker2.c - Error returned from the gcc compiler.
+- 43: couldn't copy "testing.sh" file into "test/" directory.
 - 44: Amount of requested tests by user is not matching the amount of parameters needed/required.
 - 45: User used inappriopriate/disallowed character somewhere in the "parameters.txt" file.
 - 46: User requested for testing permutation of length greater than 9.

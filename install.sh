@@ -3,7 +3,10 @@
 location=$(pwd)
 
 bug_check(){
-#gdzie: $1 to komunikat wypisywany dla uzytkownika, $2 to error exit code, a $3 to flaga, ktora "mowi" w ktory if nalezy wejsc.
+#gdzie: $1 to komunikat wypisywany dla uzytkownika, $2 to error exit code, a $3 to flaga, ktora podpowiada w ktory if nalezy wejsc.
+#mowiac bardziej szczegolowo: flaga $3 determinuje czy blad byl krytyczny i czy blad ten dotyczyl czesci zwiazanej 
+#z instalacja programu perm czy czesci zwiazanej z instalacja programu do sluzacego do testowania/przeprowadzania testow automatycznych.
+
 	if (($? != 0 && $3 == 1))
 	then 
 		echo $1
