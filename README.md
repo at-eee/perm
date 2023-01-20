@@ -86,3 +86,4 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 44: Amount of requested tests by user is not matching the amount of parameters needed/required.
 - 45: User used inappriopriate/disallowed character somewhere in the "parameters.txt" file.
 - 46: User requested for testing permutation of length greater than 9.
+- 47: unable to overwrite the "user_input.txt" file during one of the iterations in "testing.sh"
