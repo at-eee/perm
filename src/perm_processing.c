@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     
     FILE *fptr2;
     
-    fptr2 = fopen("result.tex", "a");
+    fptr2 = fopen(argv[2], "a");
     
     if (fptr2 == NULL) {
         return 2;
