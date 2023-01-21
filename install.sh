@@ -60,7 +60,7 @@ then
 	echo 'instaluje pakiet do testowania...'
 	mkdir test
 	bug_check 'Nie udalo sie utworzyc folderu test/,' 41 2
-	#mkdir test/bin/
+
 	gcc src/input_checker2.c -o bin/input_checker2.out
 	bug_check 'Nie udalo sie skompilowac podprogramu input_checker2.out - blad gcc,' 42 2
 
@@ -69,4 +69,7 @@ then
 	
 	mv src/parameters.txt test/
 	bug_check 'Nie udalo sie przeniesc pliku parameters.txt z folderu src/ do folderu test/,' 48 0
+	
+	cp ./src/instructions_for_gnuplot.p ./test/
+	bug_check 'Nie udalo sie skopiowac programu testing.sh z folderu src/ do folderu test/,' 43 2 
 fi

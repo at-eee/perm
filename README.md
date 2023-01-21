@@ -74,7 +74,7 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 27: couldn't create "logs/" directory (or for some reason "mkdir -p directory_name" didn't work properly).
 - 28: couldn't remove "logs/logs$i" subdirectory from the last program's session.
 - 29: couldn't create "logs/logs$i" subdirectory.
-- 30: Error returned from the pdflatex program.
+- 30: Error returned from the pdflatex program during creation of "result$i.pdf" file.
 - 31: Error returned from the cmake program.
 - 32: Error returned from the make program.
 - 33: Error of the "perm_processing.out" subprogram.
@@ -93,3 +93,11 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 47: unable to overwrite the "user_input.txt" file during one of the iterations in "testing.sh"
 - 48: couldn't move "parameters.txt" file to "test/" directory (not a critical error).
 - 49: couldn't perform head or tail function on "parameters.txt" file
+- 50: couldn't change directory permissions for "test/" directory.
+- 51: couldn't create "stat.tex" file inside the "test/" directory.
+- 52: couldn't change file permissions for "test/stat.tex" file.
+- 53: couldn't create "time.txt" file inside the "test/" directory.
+- 53: Error returned from the pdflatex program during creation of "stat.pdf" file.
+- 54: couldn't create "for_chart.txt" file inside the "test/" directory.
+- 55: couldn't change file permissions for "test/for_chart.txt" file.
+- 56: couldn't copy "instructions_for_gnuplot.p" file to "test/" directory.

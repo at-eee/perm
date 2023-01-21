@@ -2,6 +2,7 @@
 //sluzy do sprawdzania inputu dla programu testing.sh
 
 #define MAKS_ILOSC_ZNAKOW 5+1
+#define NAZWA_PLIKU argv[1]
 //5+1, bo 5 znakow + 1 znak '\0' (tzw. "termination special character").
 
 #include <stdio.h>
@@ -13,7 +14,7 @@ int main(int argc, char** argv) {
 
     FILE *fptr1;
     
-    fptr1 = fopen(argv[1], "r");
+    fptr1 = fopen(NAZWA_PLIKU, "r");
     
     char word[MAKS_ILOSC_ZNAKOW]; //"slowo"
     
@@ -23,10 +24,10 @@ int main(int argc, char** argv) {
 
     fscanf(fptr1, "%s", word);
 
-    while(word[i] != '\0' && i < MAKS_ILOSC_ZNAKOW+1){
+    while(word[i] != '\0' && i < MAKS_ILOSC_ZNAKOW+1){//przerwij jak tylko petla dojdzie do "znaku terminacji" badz gdy przekroczy dlugosc tablicy word.
             
             if(!isdigit(word[i])){
-                printf("Blad!!! w pierwszej linii pliku %s podano nieprawidlowy znak!\nPrzerywam dzialanie programu.\n", argv[1]);
+                printf("Blad!!! w pierwszej linii pliku %s podano nieprawidlowy znak!\nPrzerywam dzialanie programu.\n", NAZWA_PLIKU);
                 return 1;
             }
             
@@ -51,16 +52,16 @@ int main(int argc, char** argv) {
 			//lub: 2 slowa wystepujace tuz po sobie sa literami (a nie litera i liczba, badz dwiema liczbami),
 			//to: *zwroc blad*.
             if(  (!isdigit(word[i]) && word[i] != 'A' && word[i] != 'B' && word[i] != 'C')
-               ||((word[i] == 'A' || word[i] == 'B' || word[i] == 'C') && i > 0)
-	       ||(isalpha(previous_word[0]) && isalpha(word[0]))  ){
-                printf("Blad!!! w pliku %s w parametrach podano nieprawidlowy znak badz litery w dwoch parametrach wystepujacych tuz po sobie!!!\nPrzerywam dzialanie programu.\n", argv[1]);
+			   ||((word[i] == 'A' || word[i] == 'B' || word[i] == 'C') && i > 0)
+			   ||(isalpha(previous_word[0]) && isalpha(word[0]))  ){
+                printf("Blad!!! w pliku %s w parametrach podano nieprawidlowy znak badz litery w dwoch parametrach wystepujacych tuz po sobie!!!\nPrzerywam dzialanie programu.\n", NAZWA_PLIKU);
                 return 1;
             }
             
             i++;
         }
 
-	strcpy(previous_word, word);
+		strcpy(previous_word, word);
     
     }
     
