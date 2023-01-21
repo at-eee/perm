@@ -17,7 +17,10 @@ fi
 x=$(head -1 user_input.txt) #pobiera liczbę permutacji do wygenerowania, podaną przez użytkownika.
 
 rm -f result$i.tex
-bug_check "Nie udalo sie usunac pliku \"result$i.tex\" z poprzedniego wykonania programu." 12
+bug_check "Nie udalo sie usunac pliku \"result$i.tex\" z poprzedniego wykonania programu." 11
+
+rm -f logs/result$i.tex
+bug_check "Nie udalo sie usunac pliku \"logs/result$i.tex\" z poprzedniego wykonania programu." 12
 
 touch result$i.tex
 bug_check "Nie udalo sie utworzyc pliku \"result$i.tex\". Koncze dzialanie programu." 13
@@ -51,11 +54,14 @@ echo "Zażądana ilość osobnych rodzajów permutacji do wygenerowania: $x" >> 
 echo '\end{flushleft}' >> result$i.tex
 echo '\hfill' >> result$i.tex
 
-rm -rf logs
-bug_check 'Nie udalo sie usunac folderu "logs/" z poprzedniej iteracji programu. Koncze dzialanie programu.' 28
-
-mkdir logs
+mkdir -p logs/
 bug_check 'Nie udalo sie utworzyc folderu "logs/". Koncze dzialanie programu.' 27
+
+rm -rf logs/logs$i
+bug_check "Nie udalo sie usunac podfolderu \"logs/logs$i\" z poprzedniej iteracji programu. Koncze dzialanie programu." 28
+
+mkdir logs/logs$i
+bug_check "Nie udalo sie utworzyc podfolderu \"logs/logs$i\". Koncze dzialanie programu." 29
 
 touch ./logs/gen.log
 bug_check 'Nie udalo sie utworzyc pliku "gen.log". Koncze dzialanie programu.' 15
@@ -85,24 +91,33 @@ done
 
 echo '\end{document}' >> result$i.tex
 
-rm -f result$i.pdf
-bug_check "Nie udalo sie usunac pliku \"result$i.pdf\" z poprzedniego wykonania programu." 17
+mkdir -p pdfs/
+bug_check 'Nie udalo sie utworzyc folderu "pdfs/". Koncze dzialanie programu.' 38
 
-touch result$i.pdf
-bug_check "Nie udalo sie utworzyc pliku \"result$i.pdf\". Koncze dzialanie programu." 18
+chmod -R 744 pdfs/
+bug_check 'Nie udalo sie zmienic uprawnien dla folderu "pdfs/". Koncze dzialanie programu.' 39
 
-chmod u+rwx result$i.pdf
-bug_check "Nie udalo sie zmienic uprawnien dla pliku \"result$i.pdf\". Koncze dzialanie programu." 19
+rm -f pdfs/result$i.pdf
+bug_check "Nie udalo sie usunac pliku \"pdfs/result$i.pdf\" z poprzedniego wykonania programu." 17
 
-touch ./logs/tex$i.log
-bug_check 'Nie udalo sie utworzyc pliku "tex.log". Koncze dzialanie programu.' 20
+touch pdfs/result$i.pdf
+bug_check "Nie udalo sie utworzyc pliku \"pdfs/result$i.pdf\". Koncze dzialanie programu." 18
 
-chmod u+rw ./logs/tex$i.log
+chmod u+rwx pdfs/result$i.pdf
+bug_check "Nie udalo sie zmienic uprawnien dla pliku \"pdfs/result$i.pdf\". Koncze dzialanie programu." 19
+
+touch logs/tex$i.log
+bug_check "Nie udalo sie utworzyc pliku \"logs/tex.log\". Koncze dzialanie programu." 20
+
+chmod u+rw logs/tex$i.log
 bug_check 'Nie udalo sie zmienic uprawnien dla pliku "tex.log". Koncze dzialanie programu.' 21
 
 pdflatex result$i.tex > ./logs/tex$i.log
 
 bug_check 'Blad programu pdflatex.' 30
+
+mv result$i.pdf pdfs/
+bug_check "Nie udalo sie przeneisc pliku \"result$i.pdf\" do folderu \"pdfs/\"" 37
 
 rm -f result$i.aux
 bug_check 'Nie udalo sie usunac pliku "result.aux".' 24
@@ -110,5 +125,5 @@ bug_check 'Nie udalo sie usunac pliku "result.aux".' 24
 rm -f data.txt
 bug_check 'Nie udalo sie usunac pliku "data.txt".' 25
 
-mv result$i.tex logs/
-bug_check "Nie udalo sie przeniesc pliku \"result$i.tex\" do folderu \"logs\/\"." 26
+mv result$i.tex logs/logs$i/
+bug_check "Nie udalo sie przeniesc pliku \"result$i.tex\" do folderu \"logs/log$i\"." 26

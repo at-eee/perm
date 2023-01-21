@@ -56,29 +56,34 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 3: inappriopriate character found in user_input.txt
 - 4: user requested all permutations of the permutation of length greater than 9.
 - 5: user requested permutation of length greater than 10 (too big for the defined buffer i.e: 10).
-- 12: couldn't remove "result.tex" (the one created during the last time program was started).
-- 13: couldn't create "result.tex" file.
-- 14: couldn't change "result.tex" file permissions.
+- 11: couldn't remove "result$i.tex" (the temporary one created during the last time program was started).
+- 12: couldn't remove "logs/result$i.tex" (the one created during the last time program was started).
+- 13: couldn't create "result$i.tex" file.
+- 14: couldn't change "result$i.tex" file permissions.
 - 15: couldn't create "gen.log" file.
 - 16: couldn't change "gen.log" file permissions.
-- 17: couldn't remove "result.pdf" (the one created during the last time program was started).
-- 18: couldn't create "result.pdf" file.
-- 19: couldn't change "result.pdf" file permissions.
-- 20: couldn't create "tex.log" file.
-- 21: couldn't change "tex.log" file permissions.
+- 17: couldn't remove "pdfs/result$i.pdf" file (the one created during the last time program was started).
+- 18: couldn't create "pdfs/result$i.pdf" file.
+- 19: couldn't change "pdfs/result$i.pdf" file permissions.
+- 20: couldn't create "logs/tex$i.log" file.
+- 21: couldn't change "logs/tex$i.log" file permissions.
 - 22: coudln't create CBuild folder or user doesn't have permissions to do so.
 - 23: couldn't change permission settings for CBuild folder (and its files/subfolders i.e: Recursively).
 - 24: couldn't remove "result.aux" file. (not a critical error).
 - 25: couldn't remove "data.txt" file. (not a critical error).
-- 26: couldn't move "result.tex" file to "logs/" directory. (not a critical error).
-- 27: couldn't create "logs/" directory.
-- 28: couldn't remove "logs/" directory from the last program's session.
+- 26: couldn't move "result$i.tex" file to "logs/logs$i" subdirectory. (not a critical error).
+- 27: couldn't create "logs/" directory (or for some reason "mkdir -p directory_name" didn't work properly).
+- 28: couldn't remove "logs/logs$i" subdirectory from the last program's session.
+- 29: couldn't create "logs/logs$i" subdirectory.
 - 30: Error returned from the pdflatex program.
 - 31: Error returned from the cmake program.
 - 32: Error returned from the make program.
 - 33: Error of the "perm_processing.out" subprogram.
 - 34: Error of the "generator.out" subprogram.
 - 35: Invalid arguments for the random data generator or error of random data generator itself.
+- 37: couldn't move "result$i.pdf" to "pdfs/result$i.pdf" (not a critical error)
+- 38: couldn't create "pdfs/" directory (or for some reason "mkdir -p directory_name" didn't work properly).
+- 39: unable to change "pdfs/" directory permission settings.
 ### Error codes related to (additional) testing package:
 - 41: couldn't create "test/" directory.
 - 42: unable to compile input_checker2.c - Error returned from the gcc compiler.
@@ -88,3 +93,4 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 46: User requested for testing permutation of length greater than 9.
 - 47: unable to overwrite the "user_input.txt" file during one of the iterations in "testing.sh"
 - 48: couldn't copy "parameters.txt" file into "test/" directory (not a critical error).
+- 49: couldn't perform head or tail function on "parameters.txt" file
