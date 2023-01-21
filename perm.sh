@@ -71,7 +71,7 @@ do
 		echo 'Uzytkownik zazadal wypisania permutacji o dlugosci wiekszej niz 10!!! Koncze dzialanie programu.' 
 		exit 5
 	fi
-	head -$(($var1+1)) user_input.txt | tail -1 |./bin/generator.out >> ./logs/gen.log
+	head -$(($var1+1)) user_input.txt | tail -1 | ./bin/generator.out >> ./logs/gen.log
 	if (($? == 7)) 
 	then 
 		echo 'Uzytkownik zazadal wypisania wszystkich permutacji, permutacji o dlugosci wiekszej niz 9! Koncze dzialanie programu.' 
@@ -94,10 +94,10 @@ bug_check "Nie udalo sie utworzyc pliku \"result$i.pdf\". Koncze dzialanie progr
 chmod u+rwx result$i.pdf
 bug_check "Nie udalo sie zmienic uprawnien dla pliku \"result$i.pdf\". Koncze dzialanie programu." 19
 
-touch ./logs/tex.log
+touch ./logs/tex$i.log
 bug_check 'Nie udalo sie utworzyc pliku "tex.log". Koncze dzialanie programu.' 20
 
-chmod u+rw ./logs/tex.log
+chmod u+rw ./logs/tex$i.log
 bug_check 'Nie udalo sie zmienic uprawnien dla pliku "tex.log". Koncze dzialanie programu.' 21
 
 pdflatex result$i.tex > ./logs/tex$i.log

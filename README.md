@@ -87,3 +87,4 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 45: User used inappriopriate/disallowed character somewhere in the "parameters.txt" file.
 - 46: User requested for testing permutation of length greater than 9.
 - 47: unable to overwrite the "user_input.txt" file during one of the iterations in "testing.sh"
+- 48: couldn't copy "parameters.txt" file into "test/" directory (not a critical error).
