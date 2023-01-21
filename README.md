@@ -80,7 +80,7 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 33: Error of the "perm_processing.out" subprogram.
 - 34: Error of the "generator.out" subprogram.
 - 35: Invalid arguments for the random data generator or error of random data generator itself.
-- 37: couldn't move "result$i.pdf" to "pdfs/result$i.pdf" (not a critical error).
+- 37: couldn't move "result$i.pdf" file to "pdfs/" directory (not a critical error).
 - 38: couldn't create "pdfs/" directory (or for some reason "mkdir -p directory_name" didn't work properly).
 - 39: unable to change "pdfs/" directory permission settings.
 ### Error codes related to (additional) testing package:
