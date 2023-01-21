@@ -66,4 +66,7 @@ then
 
 	cp ./src/testing.sh ./test/
 	bug_check 'Nie udalo sie skopiowac programu testing.sh z folderu src/ do folderu test/,' 43 2
+	
+	mv src/parameters.txt test/
+	bug_check 'Nie udalo sie przeniesc pliku parameters.txt z folderu src/ do folderu test/,' 48 0
 fi

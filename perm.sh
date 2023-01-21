@@ -106,13 +106,13 @@ bug_check "Nie udalo sie utworzyc pliku \"pdfs/result$i.pdf\". Koncze dzialanie 
 chmod u+rwx pdfs/result$i.pdf
 bug_check "Nie udalo sie zmienic uprawnien dla pliku \"pdfs/result$i.pdf\". Koncze dzialanie programu." 19
 
-touch logs/tex$i.log
+touch logs/logs$i/tex$i.log
 bug_check "Nie udalo sie utworzyc pliku \"logs/tex.log\". Koncze dzialanie programu." 20
 
-chmod u+rw logs/tex$i.log
+chmod u+rw logs/logs$i/tex$i.log
 bug_check 'Nie udalo sie zmienic uprawnien dla pliku "tex.log". Koncze dzialanie programu.' 21
 
-pdflatex result$i.tex > ./logs/tex$i.log
+pdflatex result$i.tex > ./logs/logs$i/tex$i.log
 
 bug_check 'Blad programu pdflatex.' 30
 
@@ -126,4 +126,7 @@ rm -f data.txt
 bug_check 'Nie udalo sie usunac pliku "data.txt".' 25
 
 mv result$i.tex logs/logs$i/
-bug_check "Nie udalo sie przeniesc pliku \"result$i.tex\" do folderu \"logs/log$i\"." 26
+bug_check "Nie udalo sie przeniesc pliku \"result$i.tex\" do folderu \"logs/log$i/\"." 26
+
+mv result$i.log logs/logs$i/
+bug_check "Nie udalo sie przeniesc pliku \"result$i.log\" do folderu \"logs/log$i/\"." 23
