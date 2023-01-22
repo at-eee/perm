@@ -4,7 +4,7 @@
 #include <string.h>
 #include <errno.h>
 
-static const char len_characters[] = { 'A', 'B', 'C', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+static const char len_characters[] = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 // ./rdg [samples count] [upper bound]
 
@@ -22,7 +22,6 @@ int main(int argc, char **argv) {
 
     srand((unsigned)time(NULL));
 
-    // TODO (wedkarz): add asserts for input
     int samples_count = atoi(argv[1]);
     int upper_bound = atoi(argv[2]);
     
