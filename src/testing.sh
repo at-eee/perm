@@ -209,3 +209,5 @@ cd test/
 pdflatex stat.tex > tex.log
 bug_check 'Blad programu pdflatex.' 53
 
+rm -f stat.aux stat.log
+bug_check 'Nie udalo sie usunac plikow stat.aux i/lub stat.log.' 60

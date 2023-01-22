@@ -104,3 +104,4 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 57: couldn't move stat.pdf from the main directory to the "test/" directory.
 - 58: User didn't write size of subtests in "parameters.txt" in increasing (and non-equal) order!
 - 59: couldn't pass an argument (file name ("test/parameters.txt")) to "input_checker2.out" or other unspecified error has occured.
+- 60: couldn't remove "stat.aux" and/or "stat.log" files (not a critical error).
