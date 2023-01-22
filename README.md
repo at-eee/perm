@@ -12,7 +12,7 @@ Required packages:
 * pdflatex
 * gcc
 * g++
-* cmake (version 3.25.0 or later)
+* cmake (version 3.10.2 or later)
 
 Make sure to install them by entering those commands to the terminal:
 ```bash
@@ -102,3 +102,5 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 55: couldn't change file permissions for "test/for_chart.txt" file.
 - 56: couldn't copy "instructions_for_gnuplot.p" file to "test/" directory.
 - 57: couldn't move stat.pdf from the main directory to the "test/" directory.
+- 58: User didn't write size of subtests in "parameters.txt" in increasing (and non-equal) order!
+- 59: couldn't pass an argument (file name ("test/parameters.txt")) to "input_checker2.out" or other unspecified error has occured.

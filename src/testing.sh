@@ -65,6 +65,9 @@ cd .. #powrot do katologu glownego perm-main
 return_value=$? #value returned by the input_checker2.out subprogram.
 if (($return_value == 1)); then exit 45; fi #napisane w taki sposob (bez uzycia bug_check), bo komunikat bledu jest wypisywany przez input_checker.out sam z siebie.
 if (($return_value == 2)); then exit 46; fi
+if (($return_value == 3)); then exit 58; fi
+#v jezeli blad wystapi, ale nie bedzie zadnym z okreslonych powyzej.
+bug_check '"input_checker2.out" nie otrzymal prawidlowego argumentu (prawidlowej nazwy pliku z parametrami testu) badz nastapil inny niezdefiniowany blad programu "input_checker2.out"!' 59
 
 i=0
 export i #bedzie sluzylo (zmienna) do zliczania kolejnych pdf'ow (export i - jest to tak zwana funkcja do przekazania zmiennej procesom podrzednym).

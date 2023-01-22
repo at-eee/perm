@@ -2,7 +2,6 @@
 //sluzy do sprawdzania inputu dla programu testing.sh
 
 #define MAKS_ILOSC_ZNAKOW 5+1
-#define NAZWA_PLIKU argv[1]
 //5+1, bo 5 znakow + 1 znak '\0' (tzw. "termination special character").
 
 #include <stdio.h>
@@ -14,7 +13,7 @@ int main(int argc, char** argv) {
 
     FILE *fptr1;
     
-    fptr1 = fopen(NAZWA_PLIKU, "r");
+    fptr1 = fopen(argv[1], "r");
     
     char word[MAKS_ILOSC_ZNAKOW]; //"slowo"
     
@@ -24,10 +23,10 @@ int main(int argc, char** argv) {
 
     fscanf(fptr1, "%s", word);
 
-    while(word[i] != '\0' && i < MAKS_ILOSC_ZNAKOW+1){//przerwij jak tylko petla dojdzie do "znaku terminacji" badz gdy przekroczy dlugosc tablicy word.
+    while(word[i] != '\0' && i < MAKS_ILOSC_ZNAKOW+1){
             
             if(!isdigit(word[i])){
-                printf("Blad!!! w pierwszej linii pliku %s podano nieprawidlowy znak!\nPrzerywam dzialanie programu.\n", NAZWA_PLIKU);
+                printf("Blad!!! w pierwszej linii pliku %s podano nieprawidlowy znak!\nPrzerywam dzialanie programu.\n", argv[1]);
                 return 1;
             }
             
@@ -52,16 +51,16 @@ int main(int argc, char** argv) {
 			//lub: 2 slowa wystepujace tuz po sobie sa literami (a nie litera i liczba, badz dwiema liczbami),
 			//to: *zwroc blad*.
             if(  (!isdigit(word[i]) && word[i] != 'A' && word[i] != 'B' && word[i] != 'C')
-			   ||((word[i] == 'A' || word[i] == 'B' || word[i] == 'C') && i > 0)
-			   ||(isalpha(previous_word[0]) && isalpha(word[0]))  ){
-                printf("Blad!!! w pliku %s w parametrach podano nieprawidlowy znak badz litery w dwoch parametrach wystepujacych tuz po sobie!!!\nPrzerywam dzialanie programu.\n", NAZWA_PLIKU);
+               ||((word[i] == 'A' || word[i] == 'B' || word[i] == 'C') && i > 0)
+	       ||(isalpha(previous_word[0]) && isalpha(word[0]))  ){
+                printf("Blad!!! w pliku %s w parametrach podano nieprawidlowy znak badz litery w dwoch parametrach wystepujacych tuz po sobie!!!\nPrzerywam dzialanie programu.\n", argv[1]);
                 return 1;
             }
             
             i++;
         }
 
-		strcpy(previous_word, word);
+	strcpy(previous_word, word);
     
     }
     
@@ -76,6 +75,8 @@ int main(int argc, char** argv) {
 	char type_of_test = '0'; //z jakim typem testu mamy "do czynienia".
 	int dlugosc_permutacji;
 	char already_checked_length = 0; //(ma imitowac bool'a) zabezpieczenie dla testu typu B.
+	int liczba1;
+	int liczba2;
 	
 	while(fscanf(fptr1, "%s", word) != EOF){
 		
@@ -100,6 +101,7 @@ int main(int argc, char** argv) {
 			}
 
 			already_checked_length++;
+			word[0] = 'x';
 		}
 		
 		if(word[0] == 'A' || word[0] == 'B' || word[0] == 'C'){
@@ -108,6 +110,20 @@ int main(int argc, char** argv) {
 			already_checked_length = 0;
 			
 		}
+
+		if(isdigit(previous_word[0]) && isdigit(word[0])){
+
+			liczba1 = atoi(previous_word);
+			liczba2 = atoi(word);
+			
+			if(liczba1 > liczba2){
+				printf("Nie podano wielkosci testow w kolejnosci rosnacej!!!\nPrzerywam dzialanie programu.\n");
+				return 3;
+			}
+			
+		}
+
+		strcpy(previous_word, word);
        
 	}
 
