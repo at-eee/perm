@@ -64,6 +64,8 @@ bug_check 'Nie udalo sie utworzyc pliku "for_chart.txt" w folderze "test/"' 54
 chmod u+rw test/for_chart.txt
 bug_check 'Nie udalo sie zmienic uprawnien dla pliku "for_chart.txt"' 55
 
+chart_count=0 #liczba wykresow w naszym folderze "test/" (potrzebnych do generowania pliku .pdf).
+
 while (($i < $amount))
 do
 	if [ $(head -$line ./test/parameters.txt | tail -1 | cut -d ' ' -f1) = 'A' ]
@@ -85,17 +87,32 @@ do
 			bug_check 'Nie udalo sie nadpisac pliku user_input.txt' 47
 			echo "$var2 A" >> user_input.txt
 			bug_check 'Nie udalo sie nadpisac pliku user_input.txt' 47
-			touch ./test/time.txt
-			bug_check 'Nie udalo sie utworzyc pliku "time.txt" w folderze "test/"' 53
+			touch time.txt
+			bug_check 'Nie udalo sie utworzyc pliku "time.txt"' 53
 
 			#czas=$(time ./perm.sh | tail -3 | head -1 | cut -d' ' -f2)
 			(time ./perm.sh) 2> time.txt
 			czas=$(tail -3 time.txt | head -1 | cut -f2)
+			echo $czas > time.txt
 
-			echo "$var2 & $czas \\\\" >> test/stat.tex
+			milisec=$(grep -o "[0-9][0-9][0-9]" time.txt)
+			#alternatywnie: $(grep -E -o "[0-9]+" time.txt | tail -1)
+			sec=$(grep -E -o "[0-9]+" time.txt | tail -2 | head -1)
+			min=$(grep -E -o "[0-9]+" time.txt | head -1)
+			((sec=sec+min*60))
+			echo "$var2 $sec.$milisec" >> test/for_chart.txt
+
+			echo "$var2 & $sec.$milisec \\\\" >> test/stat.tex
 			echo '\hline' >> test/stat.tex
+			
+			#echo $czas > time.txt
 
-			echo "$var2 $czas" >> test/for_chart.txt
+			#milisec=$(grep -o "[0-9][0-9][0-9]" time.txt)
+			##alternatywnie: $(grep -E -o "[0-9]+" time.txt | tail -1)
+			#sec=$(grep -E -o "[0-9]+" time.txt | tail -2 | head -1)
+			#min=$(grep -E -o "[0-9]+" time.txt | head -1)
+			#((sec=sec+min*60))
+			#echo "$var2 $sec.$milisec" >> test/for_chart.txt
 
 			echo $i
 			((i++)) #ta operacja dzieje sie dodatkowo (by orientowac sie przy ktorym parametrze w pliku parameters.txt jestesmy), poniewaz i tak odwolujmy sie do perm za pomoca liczby var2 (z liczb w in1).
@@ -105,10 +122,12 @@ do
 		echo '\end{table}' >> test/stat.tex
 		cd test/
 		gnuplot instructions_for_gnuplot.p
+		mv chart.png chart$chart_count.png
+		((chart_count++))
 		cd ..
 		echo '\begin{figure}[h]' >> test/stat.tex
 		echo '\centering' >> test/stat.tex
-		echo '\includegraphics[width=0.60\textwidth]{chart.png}' >> test/stat.tex
+		echo "\\includegraphics[width=0.60\\textwidth]{chart$(($chart_count-1)).png}" >> test/stat.tex
 		echo '\caption{wykres dla podtestow, testu typu A.}' >> test/stat.tex
 		echo '\end{figure}' >> test/stat.tex
 	elif [ $(head -$line ./test/parameters.txt | tail -1 | cut -d ' ' -f 1) = 'B' ]
@@ -138,4 +157,10 @@ do
 done
 
 echo '' >> test/stat.tex 
-echo '\end{document}' >> test/stat.tex 
+echo '\end{document}' >> test/stat.tex
+
+cd test/
+
+pdflatex stat.tex > tex.log
+bug_check 'Blad programu pdflatex.' 53
+

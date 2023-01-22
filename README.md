@@ -96,8 +96,9 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 50: couldn't change directory permissions for "test/" directory.
 - 51: couldn't create "stat.tex" file inside the "test/" directory.
 - 52: couldn't change file permissions for "test/stat.tex" file.
-- 53: couldn't create "time.txt" file inside the "test/" directory.
+- 53: couldn't create "time.txt" file (in the perm-main folder).
 - 53: Error returned from the pdflatex program during creation of "stat.pdf" file.
 - 54: couldn't create "for_chart.txt" file inside the "test/" directory.
 - 55: couldn't change file permissions for "test/for_chart.txt" file.
 - 56: couldn't copy "instructions_for_gnuplot.p" file to "test/" directory.
+- 57: couldn't move stat.pdf from the main directory to the "test/" directory.
