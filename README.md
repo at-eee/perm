@@ -48,6 +48,25 @@ Sample __user_input.txt__ file:
 ./perm.sh 
 ```
 
+## Testing
+Testing package allows you to quickly generate many pdf files at the same time, measure the generation time and display the results in a form of a chart.\
+To start testing, open the __parameters.txt__ file and enter the number of test samples followed by test details.\
+&nbsp;&nbsp;&nbsp;&nbsp;A - number of permutation elements (max value of 9 due to O(n!) time complexity)\
+&nbsp;&nbsp;&nbsp;&nbsp;B - many random permutations
+
+<br/>
+
+Sample __parameters.txt__ file:
+```txt
+3
+A
+4 5 6 7 8
+B 12
+100 200 300 400 500
+B 14
+10 50 250 1250
+```
+
 __Note__: user takes resposibility of erroneous program results due to invalid input.
 
 ## Error codes
