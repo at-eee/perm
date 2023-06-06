@@ -124,3 +124,8 @@ __Note__: user takes resposibility of erroneous program results due to invalid i
 - 58: User didn't write size of subtests in "parameters.txt" in increasing (and non-equal) order!
 - 59: couldn't pass an argument (file name ("test/parameters.txt")) to "input_checker2.out" or other unspecified error has occured.
 - 60: couldn't remove "stat.aux" and/or "stat.log" files (not a critical error).
+
+## Notes:
+To anyone ever checking this repository in the future: our teacher was very strict in terms of error-handling (almost obsessive we could say) hence, the amount of error codes :) .
+Not that it is something bad - in the end, it is good actually good that it is very bug-proof.
+Just felt some sense of responsibility to explain the reason behind the enormous amount of program's error codes to anyone reading this in the future.
